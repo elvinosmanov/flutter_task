@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter_task/constants.dart';
 import 'package:http/http.dart' as http;
 
-import 'models/api_response.dart';
+import '../models/api_response.dart';
+
 
 class AuthService {
   Future<ApiResponse> loginUser(String email, String password) async {
@@ -23,6 +24,7 @@ class AuthService {
     }
     return apiResponse;
   }
+  
   Future<ApiResponse> registerUser(String email, String password) async {
     ApiResponse apiResponse =  ApiResponse();
     try {

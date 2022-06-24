@@ -1,22 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/auth_service.dart';
-import 'package:flutter_task/home_page.dart';
+import 'package:flutter_task/pages/home_page.dart';
+import 'package:flutter_task/pages/login_page.dart';
+import 'package:flutter_task/provider/user_provider.dart';
 import 'package:flutter_task/provider/home_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+String? token;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  token = prefs.getString("token");
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => HomeProvider(),
-      child: const MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => HomeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => UserProvider(),
+        ),
+      ],
+      child: MaterialApp(
         title: 'Material App',
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: navigationPage(),
       ),
     );
+  }
+}
+
+navigationPage() {
+  if (token != null) {
+    return const HomePage();
+  } else {
+    return const LoginPage();
   }
 }
 // Center(

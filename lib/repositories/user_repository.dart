@@ -28,8 +28,10 @@ class UserRepository {
     try {
       final response = await http.get(Uri.parse('$baseURL/api/users/2'));
       final json = jsonDecode(response.body);
+      print(response.body);
       if (response.statusCode == 200) {
-        apiResponse.data = UserModel.fromJson(json);
+        apiResponse.data = UserModel.fromJson(json['data']);
+        print((apiResponse.data as UserModel).toString());
       } else {
         apiResponse.apiError = ApiError.fromJson(json);
       }
@@ -39,11 +41,12 @@ class UserRepository {
     return apiResponse;
   }
 
-  Future<ApiResponse> updateUser(UserModel userModel) async {
+  Future<ApiResponse> updateUser(Map map) async {
     ApiResponse apiResponse = ApiResponse();
     try {
-      final response = await http.put(Uri.parse('$baseURL/api/users/2'), body: userModel.toMap());
+      final response = await http.put(Uri.parse('$baseURL/api/users/2'), body: map);
       final json = jsonDecode(response.body);
+      print("vody" + response.body);
       if (response.statusCode == 200) {
         apiResponse.data = UserModel.fromJson(json);
       } else {

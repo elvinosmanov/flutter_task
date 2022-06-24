@@ -4,12 +4,14 @@ class UserModel {
   final String firstName;
   final String lastName;
   final String avatarURL;
+  final String dateTime;
   UserModel({
     required this.id,
     required this.email,
     required this.firstName,
     required this.lastName,
     required this.avatarURL,
+    required this.dateTime,
   });
 
   Map<String, dynamic> toMap() {
@@ -26,9 +28,10 @@ class UserModel {
     return UserModel(
       id: map['id'] ?? 0,
       email: map['email'] ?? '',
-      firstName: map['first_name'] ?? '',
+      firstName: map['first_name'] ?? map['name'] ?? '',
       lastName: map['last_name'] ?? '',
-      avatarURL: map['avatar'] ?? '',
+      avatarURL: map['avatar'] ?? 'https://reqres.in/img/faces/2-image.jpg',
+      dateTime: (map['updatedAt'] ??'').toString()
     );
   }
 
