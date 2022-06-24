@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('All Users'),
         leading: IconButton(
-          icon: Icon(Icons.logout),
+          icon: const Icon(Icons.logout),
           onPressed: () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.remove('token');
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                                 '${item.firstName} ${item.lastName}',
                                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text('Email: ${item.email}'),

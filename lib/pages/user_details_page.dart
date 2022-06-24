@@ -1,43 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/models/user.dart';
 import 'package:flutter_task/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
-// class UserDetailsPage extends StatefulWidget {
-//   const UserDetailsPage({Key? key}) : super(key: key);
-
-//   @override
-//   State<UserDetailsPage> createState() => _UserDetailsPageState();
-// }
-
-// class _UserDetailsPageState extends State<UserDetailsPage> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     context.read<UserProvider>().getUser();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('User Details'),
-//       ),
-//       body: context.watch<UserProvider>().userModel == null
-//           ? const Center(
-//               child: CircularProgressIndicator(),
-//             )
-//           : Column(
-//               children: [
-//                 Text(provider.userModel.toString()),
-//                 Text(provider.userModel!.firstName),
-//                 Text(provider.userModel!.lastName),
-//                 Text(provider.userModel!.email),
-//               ],
-//             ),
-//     );
-//   }
-// }
 
 class UserDetailsPage extends StatefulWidget {
   const UserDetailsPage({Key? key}) : super(key: key);
