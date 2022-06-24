@@ -28,10 +28,8 @@ class UserRepository {
     try {
       final response = await http.get(Uri.parse('$baseURL/api/users/2'));
       final json = jsonDecode(response.body);
-      print(response.body);
       if (response.statusCode == 200) {
         apiResponse.data = UserModel.fromJson(json['data']);
-        print((apiResponse.data as UserModel).toString());
       } else {
         apiResponse.apiError = ApiError.fromJson(json);
       }
@@ -46,7 +44,6 @@ class UserRepository {
     try {
       final response = await http.put(Uri.parse('$baseURL/api/users/2'), body: map);
       final json = jsonDecode(response.body);
-      print("vody" + response.body);
       if (response.statusCode == 200) {
         apiResponse.data = UserModel.fromJson(json);
       } else {
